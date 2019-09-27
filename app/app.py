@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from json import dumps
 import time
 import math
-e = create_engine('sqlite:///tnc.db')
+e = create_engine('sqlite:///db/tnc.db')
 
 app = Flask(__name__)
 api = Api(app)
