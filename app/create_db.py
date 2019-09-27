@@ -35,7 +35,7 @@ def main():
                                         operator text NOT NULL DEFAULT 'unknown'
                                     ); """
  
-    conn = create_connection('sqlite:///tnc.db')
+    conn = create_connection('sqlite:///db/tnc.db')
 
     if conn is not None:
 
