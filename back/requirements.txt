@@ -1,0 +1,5 @@
+flask
+flask_restful
+sqlalchemy
+json import dumps
+sqlite3

@@ -1,0 +1,20 @@
+version: "2.3"
+
+networks:
+  oko-default-network:
+    name: oko-default-network
+    driver: overlay
+
+services:
+  postgres-server:
+    build: database
+    container_name: oko_database
+    image: oko_database
+    hostname: oko_database
+    networks:
+      - oko-default-network
+    ports:
+      - 5432:5432
+    volumes:
+      - /opt/bin/oko-docker/tmp:/tmp:rw
+
