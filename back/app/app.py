@@ -14,6 +14,8 @@ city_api = "https://geocode-maps.yandex.ru/1.x/"
 
 stations_api = "https://api.rasp.yandex.net/v3.0/nearest_stations/"
 
+route_api = "https://api.rasp.yandex.net/v3.0/search/"
+
 app = Flask(__name__)
 api = Api(app)
 CORS(app)
@@ -27,7 +29,11 @@ parser.add_argument('operator', type=str, required = True, location='args')
 parser.add_argument('type', type=str, location='args')
 
 stat_parser = reqparse.RequestParser()
-stat_parser.add_argument('city', type=str, location='args')
+stat_parser.add_argument('city', type=str, required = True, location='args')
+
+route_parser = reqparse.RequestParser()
+route_parser.add_argument('sfrom', type=str, required = True, location='args')
+route_parser.add_argument('tfrom', type=str, required = True, location='args')
 
 def check_request(data):
     # print(data['latitude'])
@@ -70,7 +76,7 @@ def form_stations(d):
     titles = []
     codes = []
     for i in a:
-        stations[i['code']] = i['title']
+        stations[i['title']] = i['code']
     #     titles.append(i['title'])
     #     codes.append(i['code'])
     # stations.append(titles)
@@ -134,6 +140,12 @@ class Stations(Resource):
         d = get_json_response(stations_api, stations_load)
         return form_stations(d)
 
+class Routes(Resource):
+    def post(self):
+        args = route_parser.parse_args()
+        route_load = {'apikey': 'f88c2a51-4a12-4072-bf65-4da9626ea175', 'format':'json', 'from': args['sfrom'], 'to': args['tfrom'], 'transport_types':'train'}
+        d = get_json_response(route_api, route_load)
+        return d
 
 @app.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
@@ -150,6 +162,8 @@ def index():
 api.add_resource(Signals, '/signals')
 
 api.add_resource(Stations, '/stations')
+
+api.add_resource(Routes, '/routes')
 
 
 
