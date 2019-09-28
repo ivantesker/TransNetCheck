@@ -18,59 +18,96 @@ function GetMap(json) {
             bottom: "35vh",
             right: "15px"
         });
+    });
+}
 
-        var searchControls = [];
+var stDeparture = [
+    "Эйс/Бэт-пес",
+    "Эретик (Левиафан)",
+    "Элемент Герл",
+    "Эндрю Беннет",
+    "Эквинокс",
+    "Юга Хан",
+    "Юошио Натсуми",
+    "Ядовитый Плющ",
+    "Ястреб и Голубь",
+    "B’wana Beast",
+    "Bat Lash",
+    "Bernadeth",
+    "Blackbriar Thorn",
+    "Pow Wow Smith",
+    "Machiste"];
+var stArrival = [
+    "Эйс/Бэт-пес",
+    "Эретик (Левиафан)",
+    "Элемент Герл",
+    "Эндрю Беннет",
+    "Эквинокс",
+    "Юга Хан",
+    "Юошио Натсуми",
+    "Ядовитый Плющ",
+    "Ястреб и Голубь",
+    "B’wana Beast",
+    "Bat Lash",
+    "Bernadeth",
+    "Blackbriar Thorn",
+    "Pow Wow Smith",
+    "Machiste"];
+var trainFlight = [
+    "Эйс/Бэт-пес",
+    "Эретик (Левиафан)",
+    "Элемент Герл",
+    "Эндрю Беннет",
+    "Эквинокс",
+    "Юга Хан",
+    "Юошио Натсуми",
+    "Ядовитый Плющ",
+    "Ястреб и Голубь",
+    "B’wana Beast",
+    "Bat Lash",
+    "Bernadeth",
+    "Blackbriar Thorn",
+    "Pow Wow Smith",
+    "Machiste"];
 
-        searchControls.push(new ymaps.control.SearchControl({
-            options: {
-                kind: 'locality',
-                placeholderContent: "Город отправления",
-                position: {
-                    left: "15px",
-                    top: "10px"
-                }
+var find = function (arr, find) {
+    return arr.filter(function (value) {
+        return (value + "").toLowerCase().indexOf(find.toLowerCase()) != -1;
+    });
+};
+function getDataProvider(arr) {
+    return {
+        suggest: function (request, options) {
+            var res = find(arr, request),
+                arrayResult = [],
+                results = Math.min(options.results, res.length);
+            for (var i = 0; i < results; i++) {
+                arrayResult.push({ displayName: res[i], value: res[i] })
             }
-        }));
+            return ymaps.vow.resolve(arrayResult);
+        }
+    };
+}
 
-        searchControls.push(new ymaps.control.SearchControl({
-
-            options: {
-                kind: 'locality',
-                placeholderContent: "Город прибытия",
-                position: {
-                    left: "15px",
-                    top: "40px"
-                }
-            }
-        }));
-
-        searchControls.push(new ymaps.control.SearchControl({
-
-            options: {
-                kind: 'locality',
-                placeholderContent: "Город прибытия",
-                position: {
-                    left: "15px",
-                    top: "40px"
-                }
-            }
-        }));
-
-        searchControls.push(new ymaps.control.SearchControl({
-
-            options: {
-                kind: 'locality',
-                placeholderContent: "Город прибытия",
-                position: {
-                    left: "15px",
-                    top: "40px"
-                }
-            }
-        }));
-
-        searchControls.forEach(sc => {
-            myMap.controls.add(sc);
+function getCustomSuggestions() {
+    ymaps.ready(function init() {
+        var suggestView1 = new ymaps.SuggestView('toCity', {
+            results: 5
         });
-
+        var suggestView2 = new ymaps.SuggestView('fromCity', {
+            results: 5
+        });
+        var suggestView2 = new ymaps.SuggestView('stDeparture', {
+            results: 5,
+            provider: getDataProvider(stDeparture)
+        });
+        var suggestView3 = new ymaps.SuggestView('stArrival', {
+            results: 5,
+            provider: getDataProvider(stArrival)
+        });
+        var suggestView4 = new ymaps.SuggestView('trainFlight', {
+            results: 5,
+            provider: getDataProvider(trainFlight)
+        });
     });
 }

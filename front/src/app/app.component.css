@@ -3,13 +3,23 @@
     width: 100vw;
     height: 100vh;
 }
+.mat-form-field {
+    width: inherit;
+}
+form{
+    width: -webkit-fill-available;
+}
+.controlsArea{
+    display: grid;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
 .dataInputsArea{
     display: grid;
     grid-template-rows: repeat(6,1fr);
     grid-row-gap: 25px;
-    min-width: 176px;
-    max-width: 400px;
-    width: 210px;
+    width: 320px;
     position: absolute;
     justify-items: center;
     top: 100px;
@@ -18,18 +28,28 @@
 }
 .input-fromCity{
     grid-row: 1;
+    justify-self: stretch;
+    padding: 5px;
 }
 .input-toCity{
     grid-row: 2;
+    justify-self: stretch;
+    padding: 5px;
 }
 .input-fromStation{
     grid-row: 3;
+    justify-self: stretch;
+    padding: 5px;
 }
 .input-ToStation{
     grid-row: 4;
+    justify-self: stretch;
+    padding: 5px;
 }
 .input-trainFlight{
     grid-row: 5;
+    justify-self: stretch;
+    padding: 5px;
 }
 .get-route-btn{
     grid-row: 6;

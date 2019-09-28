@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { startWith, map } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+
 declare const GetMap: any;
+declare const getCustomSuggestions: any;
 
 @Component({
   selector: 'app-root',
@@ -15,30 +14,16 @@ export class AppComponent implements OnInit {
 
   }
   title = 'HackMap';
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
 
   ngOnInit() {
     this._getMap();
-
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    this.getCustomSuggestions();
+  }
+  public getCustomSuggestions() {
+    getCustomSuggestions();
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    if (filterValue === '') {
-      return;
-    } else {
-
-      return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-    }
-  }
-
-  private _getMap() {
+  public _getMap() {
     this.http.get('../data/info.json').subscribe((data) => GetMap(data));
   }
 }
