@@ -57,7 +57,7 @@ api.add_resource(Signals, '/signals')
 
 @app.route('/')
 def index():
-    return 'OK'
+    return render_template('index.html')
 
 if __name__ == '__main__':
-     app.run()
+     app.run(host='0.0.0.0', port=666)
