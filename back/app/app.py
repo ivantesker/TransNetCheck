@@ -70,7 +70,7 @@ def form_stations(d):
     titles = []
     codes = []
     for i in a:
-        stations[i['title']] = i['code']
+        stations[i['code']] = i['title']
     #     titles.append(i['title'])
     #     codes.append(i['code'])
     # stations.append(titles)
