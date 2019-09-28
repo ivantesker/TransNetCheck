@@ -84,6 +84,25 @@ class Signals(Resource):
 
         return {'signals': [i for i in query.cursor.fetchall()]}
 
+    def put(self):
+        args = parser.parse_args()
+        conn = e.connect()
+        # print(response.text)
+        if args['type']:
+            command = "INSERT INTO signals(latitude, longtitude, level, date, operator, ntype) VALUES({latitude}, {longtitude}, {level}, {date}, {operator}, {ntype})"\
+                .format(latitude=args['latitude'], longtitude=args['longtitude'], level=args['level'], date=int(time.time()), operator=args['operator'].lower(), ntype=args['type'])
+        else:
+            command = "INSERT INTO signals(latitude, longtitude, level, date, operator) VALUES({latitude}, {longtitude}, {level}, {date}, {operator})"\
+                .format(latitude=args['latitude'], longtitude=args['longtitude'], level=args['level'], date=int(time.time()), operator=args['operator'].lower())
+        if check_request(args):
+            query = conn.execute(command)
+            return {'Response':'Success'}
+        else:
+            return {'Response':'Checksum error'}
+
+    def delete(self):
+        pass
+
     def post(self):
         args = parser.parse_args()
         conn = e.connect()
@@ -96,15 +115,9 @@ class Signals(Resource):
                 .format(latitude=args['latitude'], longtitude=args['longtitude'], level=args['level'], date=int(time.time()), operator=args['operator'].lower())
         if check_request(args):
             query = conn.execute(command)
-            return 'Success'
+            return {'Response':'Success'}
         else:
-            return 'Checksum error'
-
-    def delete(self):
-        pass
-
-    def put(self):
-        pass
+            return {'Response':'Checksum error'}
 
 class Stations(Resource):
     def get(self):
