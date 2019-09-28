@@ -19,6 +19,11 @@ parser.add_argument('type', type=str, location='form')
 
 
 def check_request(data):
+    print(data['latitude'])
+    # print(data['longtitude'])
+    # print(data['level'])
+    # print(data['checksum'])
+
     # if int(data['latitude'] ** 2 + math.sqrt(data['longtitude']) + math.log10(data['level'])) % 1000 == data['checksum']:
     #     return True
     # else:
