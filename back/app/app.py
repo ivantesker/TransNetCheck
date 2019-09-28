@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_restful import Resource, Api, reqparse, abort
 from sqlalchemy import create_engine
 from json import dumps
@@ -14,7 +14,8 @@ parser.add_argument('latitude', type=float, required=True, location='form')
 parser.add_argument('longtitude', type=float,  required=True, location='form')
 parser.add_argument('level', type=int, required=True, location='form')
 parser.add_argument('checksum', type=int, required=True, location='form')
-parser.add_argument('operator', type=str, location='form')
+parser.add_argument('operator', type=str, required = True, location='form')
+parser.add_argument('type', type=str, location='form')
 
 
 def check_request(data):
@@ -34,12 +35,12 @@ class Signals(Resource):
     def put(self):
         args = parser.parse_args()
         conn = e.connect()
-        if args['operator']:
+        if args['type']:
+            command = "INSERT INTO signals(latitude, longtitude, level, date, operator, ntype) VALUES({latitude}, {longtitude}, {level}, {date}, {operator}, {ntype})"\
+                .format(latitude=args['latitude'], longtitude=args['longtitude'], level=args['level'], date=int(time.time()), operator=args['operator'].lower(), ntype=args['type'])
+        else:
             command = "INSERT INTO signals(latitude, longtitude, level, date, operator) VALUES({latitude}, {longtitude}, {level}, {date}, {operator})"\
                 .format(latitude=args['latitude'], longtitude=args['longtitude'], level=args['level'], date=int(time.time()), operator=args['operator'].lower())
-        else:
-            command = "INSERT INTO signals(latitude, longtitude, level, date) VALUES({latitude}, {longtitude}, {level}, {date})"\
-                .format(latitude=args['latitude'], longtitude=args['longtitude'], level=args['level'], date=int(time.time()))
         if check_request(args):
             query = conn.execute(command)
             return 'Success'
@@ -53,6 +54,10 @@ class Signals(Resource):
         pass
  
 api.add_resource(Signals, '/signals')
+
+@app.route('/')
+def index():
+    return 'OK'
 
 if __name__ == '__main__':
      app.run()

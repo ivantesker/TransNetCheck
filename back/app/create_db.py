@@ -32,6 +32,7 @@ def main():
                                         longtitude float NOT NULL,
                                         level integer,
                                         date integer,
+                                        ntype text NOT NULL,
                                         operator text NOT NULL DEFAULT 'unknown'
                                     ); """
  
