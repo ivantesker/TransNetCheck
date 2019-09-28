@@ -19,30 +19,58 @@ function GetMap(json) {
             right: "15px"
         });
 
-        var searchFromSity = new ymaps.control.SearchControl({
+        var searchControls = [];
+
+        searchControls.push(new ymaps.control.SearchControl({
             options: {
                 kind: 'locality',
+                placeholderContent: "Город отправления",
                 position: {
                     left: "15px",
                     top: "10px"
                 }
             }
-        });
+        }));
 
-        myMap.controls.add(searchFromSity);
-
-        var searchToSity = new ymaps.control.SearchControl({
+        searchControls.push(new ymaps.control.SearchControl({
 
             options: {
                 kind: 'locality',
+                placeholderContent: "Город прибытия",
                 position: {
                     left: "15px",
                     top: "40px"
                 }
             }
-        });
+        }));
 
-        myMap.controls.add(searchToSity);
+        searchControls.push(new ymaps.control.SearchControl({
+
+            options: {
+                kind: 'locality',
+                placeholderContent: "Город прибытия",
+                position: {
+                    left: "15px",
+                    top: "40px"
+                }
+            }
+        }));
+
+        searchControls.push(new ymaps.control.SearchControl({
+
+            options: {
+                kind: 'locality',
+                placeholderContent: "Город прибытия",
+                position: {
+                    left: "15px",
+                    top: "40px"
+                }
+            }
+        }));
+
+        searchControls.forEach(sc => {
+            myMap.controls.add(sc);
+        });
 
     });
 }
