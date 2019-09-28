@@ -1,5 +1,14 @@
 <resources>
-    <string name="app_name">OPSOSCOVERAGE</string>
-    <string name="dbm_str">Уровень сигнала: %d dBm</string>
-    <string name="provider_str">Ваш провайдер: %s</string>
+    <string name="app_name">Stery - сотовое покрытие</string>
+    <string name="request_updates">Отслеживание запущено</string>
+    <string name="remove_updates">Отслеживание остановлено</string>
+
+    <string name="permission_rationale">Для работы приложения требуется доступ к вашему местоположению</string>
+    <string name="permission_denied_explanation">Запрос на доступ к местоположению был отклонён. Без него работа приложения невозможна.</string>
+
+    <string name="settings">Настройки</string>
+
+    <string name="dbm_str">2G: %s dBm\n3G: %s dBm\n4G: %s dBm</string>
+    <string name="provider_str">Ваш оператор: %s</string>
+
 </resources>
