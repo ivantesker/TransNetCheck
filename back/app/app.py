@@ -19,11 +19,11 @@ parser.add_argument('type', type=str, location='form')
 
 
 def check_request(data):
-    if int(data['latitude'] ** 2 + math.sqrt(data['longtitude']) + math.log10(data['level'])) % 1000 == data['checksum']:
-        return True
-    else:
-        return False
-    # return True
+    # if int(data['latitude'] ** 2 + math.sqrt(data['longtitude']) + math.log10(data['level'])) % 1000 == data['checksum']:
+    #     return True
+    # else:
+    #     return False
+    return True
 
 class Signals(Resource):
     def get(self):

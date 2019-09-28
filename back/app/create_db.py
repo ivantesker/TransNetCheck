@@ -32,8 +32,8 @@ def main():
                                         longtitude float NOT NULL,
                                         level integer,
                                         date integer,
-                                        ntype text NOT NULL,
-                                        operator text NOT NULL DEFAULT 'unknown'
+                                        operator text NOT NULL,
+                                        ntype text NOT NULL DEFAULT 'unknown'
                                     ); """
  
     conn = create_connection('sqlite:///db/tnc.db')
