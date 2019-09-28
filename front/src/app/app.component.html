@@ -1,0 +1,71 @@
+<div id="map" class="map"></div>
+<div class="dataInputsArea">
+    <div class="input-fromCity">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Город отправления"  matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="input-toCity">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Город прибытия" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="input-fromStation">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Станция отправления" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="input-ToStation">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Станция прибытия" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="input-trainFlight">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Выберите рейс" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="get-route-btn">
+            <button mat-flat-button color="primary">Показать путь</button>
+    </div>
+</div>
