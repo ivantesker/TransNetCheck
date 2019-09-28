@@ -10,6 +10,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { MapComponent } from './map/map.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -18,7 +20,9 @@ import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

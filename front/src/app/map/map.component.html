@@ -1,0 +1,43 @@
+<div id="map" class="map"></div>
+
+<div class="dataInputsArea">
+    <div class="input-fromCity">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input id="fromCity" type="text" placeholder="Город отправления" matInput>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="input-toCity">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input id="toCity" type="text" placeholder="Город прибытия" matInput>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="input-fromStation">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input id="stDeparture" type="text" placeholder="Станция отправления" matInput>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="input-ToStation">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input id="stArrival" type="text" placeholder="Станция прибытия" matInput>
+
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="input-trainFlight">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input id="trainFlight" type="text" placeholder="Выберите рейс" matInput>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="get-route-btn">
+        <button mat-flat-button (click)="s()" color="primary">Показать путь</button>
+    </div>
+</div>

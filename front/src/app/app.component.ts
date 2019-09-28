@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-declare const GetMap: any;
-declare const getCustomSuggestions: any;
 
 @Component({
   selector: 'app-root',
@@ -10,21 +6,12 @@ declare const getCustomSuggestions: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private http: HttpClient) {
+  constructor() {
 
   }
   title = 'HackMap';
 
   ngOnInit() {
-    this._getMap();
-    this.getCustomSuggestions();
-  }
-  public getCustomSuggestions() {
-    getCustomSuggestions();
-  }
-
-  public _getMap() {
-    this.http.get('../data/info.json').subscribe((data) => GetMap(data));
   }
 }
 
