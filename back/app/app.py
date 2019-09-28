@@ -158,7 +158,7 @@ api.add_resource(Stations, '/stations')
 #   return send_from_directory('map/', path)
 
 if __name__ == '__main__':
-     app.run(host='0.0.0.0', port=5050 , debug=True)
+     app.run(host='0.0.0.0', port=999 , debug=True)
 
 @app.errorhandler(500)
 def server_error(e):
