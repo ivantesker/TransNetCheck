@@ -2,4 +2,4 @@
 
 # python create_db.py
 
-python app.py
+python3 app.py
