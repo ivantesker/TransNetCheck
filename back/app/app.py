@@ -283,36 +283,11 @@ class Routes(Resource):
                 
         return data
 
-        # data = {"type": "FeatureCollection",
-        # "features": []}
-        # ind = 0
-        # conn = e.connect()
-
-        # query = conn.execute("select latitude, longtitude, operator, ntype from signals where operator in ('beeline')")
-        # for i in query.cursor.fetchall():
-        #     ind += 1
-        #     frag = {"type": "Feature",
-        #     "id": ind,
-        #     "options": {"fillColor": operator_colors[i[2]], "strokeColor": operator_colors[i[2]], "opacity": connection_level['4G']},
-        #     "properties": {"balloonContent": "Содержимое балуна", "hintContent": "Текст подсказки"},
-        #     "geometry": {
-        #         "type": "Circle",
-        #         "coordinates": [
-        #             i[0],
-        #             i[1]
-        #         ],
-        #         "radius": 100000
-        #     }
-        #     }
-        #     data["features"].append(frag)
-
-        # return data
-
 @app.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
   return send_from_directory('./map/', path)
 
-@app.route('/')
+@app.route('/map')
 def root():
   return send_from_directory('./map/', 'index.html')
 
@@ -327,7 +302,7 @@ api.add_resource(Stations, '/stations')
 api.add_resource(Routes, '/routes')
 
 if __name__ == '__main__':
-     app.run(host='0.0.0.0', port=999 , debug=True)
+     app.run(host='localhost', port=999 , debug=True)
 
 @app.errorhandler(500)
 def server_error(e):
