@@ -75,7 +75,7 @@ form{
 }
 @media only screen and (max-width: 450px){
     .map{
-    
+        height:-webkit-fill-available;
     }
     .scroll-up-btn{
         display: initial;
