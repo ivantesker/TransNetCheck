@@ -225,14 +225,14 @@ class Routes(Resource):
                 first_thread = j
                 for i in query.cursor.fetchall():
                     ind += 1
-                    # if not args['tele2'] and i[2] == 'tele2':
-                    #     continue
-                    # if not args['mts_rus'] and i[2] == 'mts_rus':
-                    #     continue
-                    # if not args['beeline'] and i[2] == 'beeline':
-                    #     continue
-                    # if not args['megafon'] and i[2] == 'megafon':
-                    #     continue
+                    if not args['tele2'] and i[2] == 'tele2':
+                        continue
+                    if not args['mts_rus'] and i[2] == 'mts_rus':
+                        continue
+                    if not args['beeline'] and i[2] == 'beeline':
+                        continue
+                    if not args['megafon'] and i[2] == 'megafon':
+                        continue
 
                     frag = {"type": "Feature",
                     "id": ind,
@@ -244,7 +244,7 @@ class Routes(Resource):
                             i[0],
                             i[1]
                         ],
-                        "radius": 100
+                        "radius": 500
                     }
                     }
                     data["features"].append(frag)
