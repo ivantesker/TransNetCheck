@@ -1,7 +1,7 @@
 
 .map{
-    width: 100vw;
-    height: 100vh;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
 }
 .mat-form-field {
     width: inherit;
@@ -74,11 +74,8 @@ form{
     justify-items: center;
 }
 @media only screen and (max-width: 450px){
-    .full-page{
-        grid-template-rows: 1fr 1fr;
-    }
     .map{
-        grid-row:2;
+    
     }
     .scroll-up-btn{
         display: initial;
@@ -94,5 +91,8 @@ form{
         top: 100px;
         left: 0px;
         background: #ffffffe8;
+    }
+    .ymaps-2-1-74-controls__control{
+        bottom: 120px !important;
     }
 }

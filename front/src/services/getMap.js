@@ -13,7 +13,7 @@ function init() {
         ]
     });
     myMap.controls.get('zoomControl').options.set('position', {
-        bottom: "35vh",
+        bottom: "130px",
         right: "15px"
     });
 }
