@@ -1,4 +1,4 @@
-var apiURL = 'http://833e704c.ngrok.io';
+var apiURL = 'https://stery.rtuitlab.ru';
 
 
 ymaps.ready(init);
