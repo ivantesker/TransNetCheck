@@ -1,5 +1,5 @@
-// var apiURL = 'https://stery.rtuitlab.ru';
-var apiURL = 'http://slocalhost';
+var apiURL = 'https://stery.rtuitlab.ru';
+// var apiURL = 'http://localhost';
 
 ymaps.ready(init);
 
