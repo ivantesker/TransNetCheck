@@ -213,11 +213,24 @@ class Routes(Resource):
         if threads:
             data = {"type": "FeatureCollection",
                     "features": []}
-            ind = 0
+            ind = 1
             thread_count = 0
             print(threads)
-
+            frag = {"type": "Feature",
+                    "id": ind,
+                    "options": {"strokeWidth": 3},
+                    "properties": {"balloonContent": "Содержимое балуна", "hintContent": "Текст подсказки"},
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": [
+                        ]
+                    }        
+            }
+            for k in threads:
+                frag['geometry']['coordinates'].append([k[1],k[0]])
+            data["features"].append(frag)
             for j in threads:
+
                 if thread_count == 0:
                     first_thread = j
                     thread_count += 1
@@ -263,10 +276,11 @@ class Routes(Resource):
                             i[0],
                             i[1]
                         ],
-                        "radius": 1000
+                        "radius": 1500
                     }
                     }
                     data["features"].append(frag)
+                
         return data
 
         # data = {"type": "FeatureCollection",
