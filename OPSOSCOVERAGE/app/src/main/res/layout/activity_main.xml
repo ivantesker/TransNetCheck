@@ -95,35 +95,6 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/domaintext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Domain" />
-        </android.support.design.widget.TextInputLayout>
-
-        <ScrollView
-            android:id="@+id/scroller"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/responses"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:ems="10"
-                android:gravity="bottom|start"
-                android:inputType="textMultiLine"
-                android:lines="10"
-                android:text="asdasdsd\nasdasdssas\nasdasads\nasdasd\nasdasdadas\nasdadas\n\n\n\n\\n\n\nasdasd\n\n\n\n\n\na\n\n\nasdasdan\nddasdn\nasdasda" />
-        </ScrollView>
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

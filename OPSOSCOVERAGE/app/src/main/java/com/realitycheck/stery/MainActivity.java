@@ -15,13 +15,11 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +37,6 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static xdroid.toaster.Toaster.toast;
 
@@ -188,8 +182,8 @@ public class MainActivity extends AppCompatActivity  implements
 
         //mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         //mLocationRequest.setSmallestDisplacement(Utils.SMALLEST_DISPLACEMENT);
-        //mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_LOW_POWER);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+//        mLocationRequest.setPriority(LocationRequest.PRIORITY_LOW_POWER);
         mLocationRequest.setMaxWaitTime(Utils.MAX_WAIT_TIME);
     }
 
@@ -251,34 +245,12 @@ public class MainActivity extends AppCompatActivity  implements
 //            Manifest.permission.READ_PHONE_STATE
 //    })
     public void requestLocationUpdates(View view) {
-        NetworkService.BASE_URL = ((TextInputEditText)(findViewById(R.id.domaintext))).getText().toString();
-        Call call = NetworkService.getInstance().getJSONApi().getAll();
-        call.enqueue(new Callback<CollectedData>() {
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) {
-                Log.i("NETWOW msg <- ", response.message());
-                Log.i("NETWOW raw <- ", response.raw().toString());
-                TextInputEditText txt = (TextInputEditText)(findViewById(R.id.responses));
-                ScrollView scrollView = (ScrollView) (findViewById(R.id.scroller));
-                txt.setText(response.raw().toString());
-                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CollectedData> call, @NonNull Throwable t) {
-                Log.i("NETWOW <- ERR", t.getMessage());
-            }
-        });
-
-
-
-
-
-//        if (!checkPermissions()) {
-//            toast("Please Allow Location Permission!");
-//            requestPermissions();
-//            return;
-//        }
+//        NetworkService.BASE_URL = ((TextInputEditText)(findViewById(R.id.domaintext))).getText().toString();
+        if (!checkPermissions()) {
+            toast("Please Allow Location Permission!");
+            requestPermissions();
+            return;
+        }
         try {
             mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
                     .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
