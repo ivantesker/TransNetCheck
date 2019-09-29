@@ -185,11 +185,11 @@ class Routes(Resource):
                             'mts_rus': "#e30612",
                             'megafon': "#741982"}
 
-        connection_level = {'4G': 0.8,
-                            '3G': 0.6,
-                            '2G': 0.4,
-                            'E': 0.3,
-                            'unknown':0.1}
+        # connection_level = {'4G': 0.6,
+        #                     '3G': 0.4,
+        #                     '2G': 0.4,
+        #                     'E': 0.3,
+        #                     'unknown':0.1}
 
         for i in d:
             if i['thread']['number'] != args['number']:
@@ -222,8 +222,8 @@ class Routes(Resource):
                     first_thread = j
                     thread_count += 1
                     continue
-                connection = "select latitude, longtitude, operator, ntype from signals where longtitude between {flo} and {slo} and latitude between {fla} and {sla} and operator in ('beeline', 'mts_rus', 'tele2', 'megafon') and ntype in ('E','2G','3G','4G')"\
-                .format(flo=0, slo=1000, fla=0, sla=1000)
+                connection = "select latitude, longtitude, operator, ntype, level from signals where longtitude between {flo} and {slo} and latitude between {fla} and {sla} and operator in ('beeline', 'mts_rus', 'tele2', 'megafon') and ntype in ('E','2G','3G','4G')"\
+                .format(flo=0, slo=10000, fla=0, sla=10000)
                 # .format(flo=first_thread[0], slo=j[0], fla=first_thread[1], sla=j[1])
                 print(connection)
                 conn = e.connect()
@@ -241,10 +241,21 @@ class Routes(Resource):
                         continue
                     if not oper_args['megafon'] and i[2] == 'megafon':
                         continue
+                    
+                    connection_level = 0
+                    if int(i[4]) == 99:
+                        connection_level = 0
+                    elif int(i[4]) > -49:
+                        connection_level = 0.35
+                    elif int(i[4]) > -80:
+                        connection_level = 0.2
+                    else:
+                        connection_level = 0.05
 
+                    
                     frag = {"type": "Feature",
                     "id": ind,
-                    "options": {"fillColor": operator_colors[i[2]], "strokeColor": operator_colors[i[2]], "opacity": connection_level[i[3]]},
+                    "options": {"fillColor": operator_colors[i[2]], "strokeColor": operator_colors[i[2]], "opacity": connection_level},
                     "properties": { "hintContent": i[2] + ' ' +  i[3] },
                     "geometry": {
                         "type": "Circle",
