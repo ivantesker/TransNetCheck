@@ -12,6 +12,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MapComponent } from './map/map.component';
 import { HomeComponent } from './home/home.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 
@@ -34,7 +36,8 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

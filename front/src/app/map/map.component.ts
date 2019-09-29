@@ -6,8 +6,8 @@ declare const getSuggestionsOfStArrival: any;
 declare const getSuggestionsOfTrainFlight: any;
 declare const getSuggestionsOfStDeparture: any;
 declare const flightRouteData: any;
+declare const apiURL: any;
 declare const GetMap: any;
-declare const AddObjectsToMap: any;
 
 @Component({
   selector: 'app-map',
@@ -20,9 +20,16 @@ export class MapComponent implements OnInit {
 
   }
   title = 'HackMap';
-  ngOnInit() {
-    this.initMap();
+  operators = {
+    beeline: false,
+    megafon: false,
+    mts_rus: false,
+    tele2: false
+  };
+  trainFlightFrom = null;
+  trainFlightTo = null;
 
+  ngOnInit() {
     this.getCustomSuggestions();
   }
   public async getCustomSuggestions() {
@@ -45,12 +52,12 @@ export class MapComponent implements OnInit {
     getSuggestionsOfStArrival(toCityInput.trim());
   }
   public async selectTrainFlight() {
-    let trainFlightFrom = null;
-    let trainFlightTo = null;
+    this.trainFlightFrom = null;
+    this.trainFlightTo = null;
     for (const key in flightRouteData.arrayStDeparture) {
       if (flightRouteData.arrayStDeparture.hasOwnProperty(key)) {
         if (document.getElementById('stDeparture')['value'] === key) {
-          trainFlightFrom = flightRouteData.arrayStDeparture[key];
+          this.trainFlightFrom = flightRouteData.arrayStDeparture[key];
           break;
         }
       }
@@ -58,21 +65,24 @@ export class MapComponent implements OnInit {
     for (const key in flightRouteData.arrayStArrival) {
       if (flightRouteData.arrayStArrival.hasOwnProperty(key)) {
         if (document.getElementById('stArrival')['value'] === key) {
-          trainFlightTo = flightRouteData.arrayStArrival[key];
+          this.trainFlightTo = flightRouteData.arrayStArrival[key];
           break;
         }
       }
     }
-    if (trainFlightFrom == null || trainFlightTo == null) {
+    if (this.trainFlightFrom == null || this.trainFlightTo == null) {
       return;
     }
-    getSuggestionsOfTrainFlight(trainFlightFrom.trim(), trainFlightTo.trim());
-  }
-  public initMap() {
-    GetMap();
-  }
-  public addObjectsToMap() {
-    this.http.get('../data/info.json').subscribe((data) => AddObjectsToMap(data));
+    getSuggestionsOfTrainFlight(this.trainFlightFrom.trim(), this.trainFlightTo.trim());
   }
 
+  public addObjectsToMap() {
+    let number = document.getElementById('trainFlight')['value'].split(' ')[0];
+    let url = `${apiURL}/routes?start_point=${this.trainFlightFrom}&end_point=${this.trainFlightTo}&number=${number}`;
+    this.http.put(url, this.operators)
+      .subscribe((data) => {
+        console.log(data);
+        GetMap(data);
+      });
+  }
 }

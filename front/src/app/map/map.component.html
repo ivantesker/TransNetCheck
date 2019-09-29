@@ -1,39 +1,35 @@
 <div id="map" class="map"></div>
-
 <div class="dataInputsArea">
     <div class="input-fromCity">
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <input id="fromCity" (keyup.enter)="selectFromCityInput()" 
-                (blur)="selectFromCityInput()" required name="fromCity"
-                 type="text" placeholder="Город отправления" matInput>
+                <input id="fromCity" (keyup.enter)="selectFromCityInput()" (blur)="selectFromCityInput()" required
+                    name="fromCity" type="text" placeholder="Город отправления" matInput>
             </mat-form-field>
         </form>
     </div>
     <div class="input-toCity">
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <input id="toCity" (keyup.enter)="selectToCityInput()" 
-                (blur)="selectToCityInput()" required name="toCity" type="text"
-                 placeholder="Город прибытия" matInput>
+                <input id="toCity" (keyup.enter)="selectToCityInput()" (blur)="selectToCityInput()" required
+                    name="toCity" type="text" placeholder="Город прибытия" matInput>
             </mat-form-field>
         </form>
     </div>
     <div class="input-fromStation">
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <input id="stDeparture" required  name="stArrival" (keyup.enter)="selectTrainFlight()" 
-                (blur)="selectTrainFlight()" (click)="selectTrainFlight()"
-                 type="text" placeholder="Станция отправления" matInput>
+                <input id="stDeparture" required name="stArrival" (keyup.enter)="selectTrainFlight()"
+                    (blur)="selectTrainFlight()" (click)="selectTrainFlight()" type="text"
+                    placeholder="Станция отправления" matInput>
             </mat-form-field>
         </form>
     </div>
     <div class="input-ToStation">
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <input id="stArrival" name="stArrival" (keyup.enter)="selectTrainFlight()" 
-                (blur)="selectTrainFlight()" required (click)="selectTrainFlight()"
-                 type="text" placeholder="Станция прибытия" matInput>
+                <input id="stArrival" name="stArrival" (keyup.enter)="selectTrainFlight()" (blur)="selectTrainFlight()"
+                    required (click)="selectTrainFlight()" type="text" placeholder="Станция прибытия" matInput>
 
             </mat-form-field>
         </form>
@@ -41,9 +37,30 @@
     <div class="input-trainFlight">
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <input id="trainFlight" required name="trainFlight" 
-                 type="text" placeholder="Выберите рейс" matInput>
+                <input id="trainFlight" required name="trainFlight" type="text" placeholder="Выберите рейс" matInput>
             </mat-form-field>
+        </form>
+    </div>
+    <div class="input-operator">
+        <form class="example-form">
+            <div id="group" class="input-operator-group">
+                <div class="in-op-gr-control">
+                    <input [(ngModel)]="operators.beeline" name="beeline" type="checkbox">
+                    <p>Beeline</p>
+                </div>
+                <div class="in-op-gr-control">
+                    <input [(ngModel)]="operators.tele2" name="tele2" type="checkbox">
+                    <p>Tele2</p>
+                </div>
+                <div class="in-op-gr-control">
+                    <input [(ngModel)]="operators.megafon" name="megafon" type="checkbox">
+                    <p>Megafon</p>
+                </div>
+                <div class="in-op-gr-control">
+                    <input [(ngModel)]="operators.mts" name="mts" type="checkbox">
+                    <p>MTS RUS</p>
+                </div>
+            </div>
         </form>
     </div>
     <div class="get-route-btn">

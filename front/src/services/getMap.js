@@ -1,33 +1,36 @@
-var apiURL = 'http://977ff9d0.ngrok.io';
+var apiURL = 'https://9bf16658.ngrok.io';
 
-function GetMap() {
-    ymaps.ready(function init() {
-        var myMap = new ymaps.Map('map', {
-            center: [55.733835, 37.588227],
-            zoom: 11,
-            controls: [
-                "zoomControl"
-            ]
-        });
+ymaps.ready(init);
 
-        myMap.controls.get('zoomControl').options.set('position', {
-            bottom: "35vh",
-            right: "15px"
-        });
+var myMap;
+
+function init() {
+    myMap = new ymaps.Map('map', {
+        center: [55.76, 37.64],
+        zoom: 10,
+        controls: [
+            "zoomControl"
+        ]
+    });
+    myMap.controls.get('zoomControl').options.set('position', {
+        bottom: "35vh",
+        right: "15px"
     });
 }
-function AddObjectsToMap(json) {
-    ymaps.ready(function init() {
-        var objectManager = new ymaps.ObjectManager();
-        // Добавляем описание объектов в формате JSON в менеджер объектов.
-        objectManager.add(json);
-        // Добавляем объекты на карту.
-        myMap.geoObjects.add(objectManager);
-    });
+function GetMap(json) {
+    if (json == {}) {
+        return;
+    }
+    var objectManager = new ymaps.ObjectManager();
+    // Добавляем описание объектов в формате JSON в менеджер объектов.
+    objectManager.add(json);
+    // Добавляем объекты на карту.
+    myMap.geoObjects.add(objectManager);
 }
+
 var find = function (arr, find) {
     return arr.filter(function (value) {
-        return (value + "").toLowerCase().indexOf(find.toLowerCase()) != -1;
+        return value.toString().toLowerCase().indexOf(find.toLowerCase()) != -1;
     });
 };
 
@@ -113,7 +116,6 @@ function getSuggestionsOfTrainFlight(trainFlightFrom, trainFlightTo) {
             }
         }
         xmlHttp.open("POST", apiURL + `/routes?start_point=${trainFlightFrom}&end_point=${trainFlightTo}`, true);
-        // xmlHttp.open("POST", apiURL + `/routes?start_point=c147&end_point=c213`, true);
         xmlHttp.send();
 
         var suggestView5 = new ymaps.SuggestView('trainFlight', {
