@@ -24,7 +24,7 @@ form{
     position: absolute;
     justify-items: center;
     top: 6vh;
-    left: 15px;
+    left: 25px;
     background: #ffffffe8;
 }
 .input-fromCity{
@@ -75,7 +75,8 @@ form{
 }
 @media only screen and (max-width: 450px){
     .map{
-        height:-webkit-fill-available;
+        height:520px;
+        width: 100%;
     }
     .scroll-up-btn{
         display: initial;
