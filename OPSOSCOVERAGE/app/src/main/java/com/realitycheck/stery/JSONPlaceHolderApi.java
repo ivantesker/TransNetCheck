@@ -2,6 +2,7 @@ package com.realitycheck.stery;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -17,5 +18,7 @@ public interface JSONPlaceHolderApi {
                                            @Query("operator") String operator,
                                            @Query("type") String type
                                            );
+    @GET("/signals")
+    public Call getAll();
 
 }

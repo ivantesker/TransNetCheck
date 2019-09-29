@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Stery - сотовое покрытие</string>
-    <string name="request_updates">Отслеживание запущено</string>
-    <string name="remove_updates">Отслеживание остановлено</string>
+    <string name="request_updates">Запустить трекинг</string>
+    <string name="remove_updates">Остановить трекинг</string>
 
     <string name="permission_rationale">Для работы приложения требуется доступ к вашему местоположению</string>
     <string name="permission_denied_explanation">Запрос на доступ к местоположению был отклонён. Без него работа приложения невозможна.</string>

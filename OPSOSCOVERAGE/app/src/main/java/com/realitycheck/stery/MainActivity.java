@@ -15,12 +15,13 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,10 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static xdroid.toaster.Toaster.toast;
 
@@ -58,9 +63,6 @@ public class MainActivity extends AppCompatActivity  implements
     private Button mRemoveUpdatesButton;
     private static TextView mLocationUpdatesResultView;
 
-
-    public MobileManager mobileManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,9 +81,6 @@ public class MainActivity extends AppCompatActivity  implements
         buildLocationSettingsRequest();
 
         mActivityRecognitionClient = new ActivityRecognitionClient(this);
-
-        // data
-        mobileManager = new MobileManager((TelephonyManager) getSystemService(TELEPHONY_SERVICE));
     }
 
 
@@ -114,27 +113,25 @@ public class MainActivity extends AppCompatActivity  implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            // Check for the integer request code originally supplied to startResolutionForResult().
-            case REQUEST_CHECK_SETTINGS:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        toast("GPS turned on");
-                        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            toast("Please Provide Location Permission.");
-                            return;
-                        }
-                        changeStatusAfterGetLastLocation("1","Manual");
+        // Check for the integer request code originally supplied to startResolutionForResult().
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    toast("GPS turned on");
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        toast("Please Provide Location Permission.");
+                        return;
+                    }
+                    changeStatusAfterGetLastLocation("1", "Manual");
 
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        if (!checkPermissions()) {
-                            requestPermissions();
-                        }
-                        toast("GPS is required to Start Tracking");
-                        break;
-                }
-                break;
+                    break;
+                case Activity.RESULT_CANCELED:
+                    if (!checkPermissions()) {
+                        requestPermissions();
+                    }
+                    toast("GPS is required to Start Tracking");
+                    break;
+            }
         }
     }
 
@@ -248,12 +245,40 @@ public class MainActivity extends AppCompatActivity  implements
 
 
 
+//    @WithPermissions(permissions = {
+//            Manifest.permission.ACCESS_COARSE_LOCATION,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.READ_PHONE_STATE
+//    })
     public void requestLocationUpdates(View view) {
-        if (!checkPermissions()) {
-            toast("Please Allow Location Permission!");
-            requestPermissions();
-            return;
-        }
+        NetworkService.BASE_URL = ((TextInputEditText)(findViewById(R.id.domaintext))).getText().toString();
+        Call call = NetworkService.getInstance().getJSONApi().getAll();
+        call.enqueue(new Callback<CollectedData>() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
+                Log.i("NETWOW msg <- ", response.message());
+                Log.i("NETWOW raw <- ", response.raw().toString());
+                TextInputEditText txt = (TextInputEditText)(findViewById(R.id.responses));
+                ScrollView scrollView = (ScrollView) (findViewById(R.id.scroller));
+                txt.setText(response.raw().toString());
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CollectedData> call, @NonNull Throwable t) {
+                Log.i("NETWOW <- ERR", t.getMessage());
+            }
+        });
+
+
+
+
+
+//        if (!checkPermissions()) {
+//            toast("Please Allow Location Permission!");
+//            requestPermissions();
+//            return;
+//        }
         try {
             mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
                     .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
@@ -329,7 +354,7 @@ public class MainActivity extends AppCompatActivity  implements
                     }
                 });
 
-            }else if(value == "0"){
+            }else if(value.equals("0")){
 
                 LocationRequestHelper.getInstance(getApplicationContext()).setValue("RequestingLocationUpdates",false);
                 mFusedLocationClient.removeLocationUpdates(getPendingIntent());

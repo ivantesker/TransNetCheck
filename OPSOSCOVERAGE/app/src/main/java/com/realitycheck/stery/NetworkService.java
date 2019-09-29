@@ -4,8 +4,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
     private static NetworkService mInstance;
-//    private static final String BASE_URL = "http://10.30.21.152:5000/";
-    private static final String BASE_URL = "http://addd6e71.ngrok.io";
+//    private static final String BASE_URL = "https://stery.rtuitlab.ru";
+    public /*private*/ static /*final*/ String BASE_URL = "http://977ff9d0.ngrok.io";
     private Retrofit mRetrofit;
 
     private NetworkService() {
