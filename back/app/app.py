@@ -94,6 +94,8 @@ def form_stations(d):
         stations[i['title']] = i['code']
     return stations
 
+
+
 class Signals(Resource):
     def get(self):
         conn = e.connect()
@@ -302,7 +304,7 @@ api.add_resource(Stations, '/stations')
 api.add_resource(Routes, '/routes')
 
 if __name__ == '__main__':
-     app.run(host='localhost', port=999 , debug=True)
+     app.run(host='0.0.0.0', port=999 , debug=True)
 
 @app.errorhandler(500)
 def server_error(e):
