@@ -38,6 +38,11 @@ route_parser.add_argument('start_point', type=str, required = True, location='ar
 route_parser.add_argument('end_point', type=str, required = True, location='args')
 route_parser.add_argument('number', type=str,  location='args')
 route_parser.add_argument('title', type=str,  location='args')
+route_parser.add_argument('tele2', type=bool,  location='form')
+route_parser.add_argument('mts_rus', type=bool,  location='form')
+route_parser.add_argument('beeline', type=bool,  location='form')
+route_parser.add_argument('megafon', type=bool,  location='form')
+
 
 
 # test
@@ -145,14 +150,14 @@ class Stations(Resource):
         points = get_city_points(d)
         lon, lat = get_center(points)
         # print(lon, lat)
-        stations_load = {'apikey': 'f88c2a51-4a12-4072-bf65-4da9626ea175', 'format':'json', 'lng': str(lon), 'lat': str(lat), 'distance': '30', 'limit':'50','transport_types':'train' }
+        stations_load = {'apikey': 'bd0e99aa-4519-482d-8f80-c9f07c53a090', 'format':'json', 'lng': str(lon), 'lat': str(lat), 'distance': '30', 'limit':'50','transport_types':'train' }
         d = get_json_response(stations_api, stations_load)
         return form_stations(d)
 
 class Routes(Resource):
     def post(self):
         args = route_parser.parse_args()
-        route_load = {'apikey': 'f88c2a51-4a12-4072-bf65-4da9626ea175', 'format':'json', 'from': args['start_point'], 'to': args['end_point'], 'transport_types':'train'}
+        route_load = {'apikey': 'bd0e99aa-4519-482d-8f80-c9f07c53a090', 'format':'json', 'from': args['start_point'], 'to': args['end_point'], 'transport_types':'train'}
         d = get_json_response(route_api, route_load)['segments']
 
         uids = []
@@ -164,18 +169,30 @@ class Routes(Resource):
     
     def put(self):
         args = route_parser.parse_args()
-        route_load = {'apikey': 'f88c2a51-4a12-4072-bf65-4da9626ea175', 'format':'json', 'from': args['start_point'], 'to': args['end_point'], 'transport_types':'train'}
-        d = get_json_response(route_api, route_load)['segments']
+        route_load = {'apikey': 'bd0e99aa-4519-482d-8f80-c9f07c53a090', 'format':'json', 'from': args['start_point'], 'to': args['end_point'], 'transport_types':'train'}
         
+        d = get_json_response(route_api, route_load)['segments']
+        print(d)
         threads = []
+
+        operator_colors = {'beeline': "#255F06",
+                            'tele2': "#255F06",
+                            'mts_rus': "#255F06",
+                            'megafon': "#255F06"}
+
+        connection_level = {'4G': 1.0,
+                            '3G': 0.7,
+                            '2G': 0.4,
+                            'E': 0.3,
+                            'unknown':0.1}
 
         for i in d:
             if i['thread']['number'] != args['number']:
                 continue
-            route_stations_load= {'apikey': 'f88c2a51-4a12-4072-bf65-4da9626ea175', 'format':'json', 'uid': i['thread']['uid']}
-            e = get_json_response(route_stations_api, route_stations_load)
+            route_stations_load= {'apikey': 'bd0e99aa-4519-482d-8f80-c9f07c53a090', 'format':'json', 'uid': i['thread']['uid']}
+            f = get_json_response(route_stations_api, route_stations_load)
             threads = []
-            for j in e['stops']:
+            for j in f['stops']:
                 if j['station']['title'] in coordinates:
                     [lon, lat] = coordinates[j['station']['title']]
                 else:
@@ -189,9 +206,74 @@ class Routes(Resource):
                 station_meta.append(lat)
                 threads.append(station_meta)
         if threads:
-            return threads
-        else:
-            return {'message': 'Error'}
+            data = {"type": "FeatureCollection",
+                    "features": []}
+            ind = 0
+            thread_count = 0
+            print(threads)
+
+            for j in threads:
+                if thread_count == 0:
+                    first_thread = j
+                    thread_count += 1
+                    continue
+                connection = "select latitude, longtitude, operator, ntype from signals where longtitude between {flo} and {slo} and latitude between {fla} and {sla} and operator in ('beeline', 'mts_rus', 'tele2', 'megafon') and ntype in ('E','2G','3G','4G')"\
+                .format(flo=first_thread[0], slo=j[0], fla=first_thread[1], sla=j[1])
+                print(connection)
+                conn = e.connect()
+                query = conn.execute(connection)
+                first_thread = j
+                for i in query.cursor.fetchall():
+                    ind += 1
+                    # if not args['tele2'] and i[2] == 'tele2':
+                    #     continue
+                    # if not args['mts_rus'] and i[2] == 'mts_rus':
+                    #     continue
+                    # if not args['beeline'] and i[2] == 'beeline':
+                    #     continue
+                    # if not args['megafon'] and i[2] == 'megafon':
+                    #     continue
+
+                    frag = {"type": "Feature",
+                    "id": ind,
+                    "options": {"fillColor": operator_colors[i[2]], "strokeColor": operator_colors[i[2]], "opacity": connection_level[i[3]]},
+                    "properties": { "hintContent": i[2]},
+                    "geometry": {
+                        "type": "Circle",
+                        "coordinates": [
+                            i[0],
+                            i[1]
+                        ],
+                        "radius": 100
+                    }
+                    }
+                    data["features"].append(frag)
+        return data
+
+        # data = {"type": "FeatureCollection",
+        # "features": []}
+        # ind = 0
+        # conn = e.connect()
+
+        # query = conn.execute("select latitude, longtitude, operator, ntype from signals where operator in ('beeline')")
+        # for i in query.cursor.fetchall():
+        #     ind += 1
+        #     frag = {"type": "Feature",
+        #     "id": ind,
+        #     "options": {"fillColor": operator_colors[i[2]], "strokeColor": operator_colors[i[2]], "opacity": connection_level['4G']},
+        #     "properties": {"balloonContent": "Содержимое балуна", "hintContent": "Текст подсказки"},
+        #     "geometry": {
+        #         "type": "Circle",
+        #         "coordinates": [
+        #             i[0],
+        #             i[1]
+        #         ],
+        #         "radius": 100000
+        #     }
+        #     }
+        #     data["features"].append(frag)
+
+        # return data
 
 @app.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
