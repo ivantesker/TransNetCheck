@@ -236,9 +236,8 @@ class Routes(Resource):
                     thread_count += 1
                     continue
                 connection = "select latitude, longtitude, operator, ntype, level from signals where longtitude between {flo} and {slo} and latitude between {fla} and {sla} and operator in ('beeline', 'mts_rus', 'tele2', 'megafon') and ntype in ('E','2G','3G','4G')"\
-                .format(flo=0, slo=10000, fla=0, sla=10000)
-                # .format(flo=first_thread[0], slo=j[0], fla=first_thread[1], sla=j[1])
-                print(connection)
+                .format(flo=first_thread[0], slo=j[0], fla=first_thread[1], sla=j[1])
+                # .format(flo=0, slo=10000, fla=0, sla=10000)print(connection)
                 conn = e.connect()
                 query = conn.execute(connection)
                 first_thread = j
