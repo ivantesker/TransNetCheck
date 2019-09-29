@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div id=\"map\" class=\"map\"></div>\n\n<div class=\"dataInputsArea\">\n    <div class=\"input-fromCity\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"fromCity\" (keyup.enter)=\"selectFromCityInput()\" \n                (blur)=\"selectFromCityInput()\" required name=\"fromCity\"\n                 type=\"text\" placeholder=\"Город отправления\" matInput>\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-toCity\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"toCity\" (keyup.enter)=\"selectToCityInput()\" \n                (blur)=\"selectToCityInput()\" required name=\"toCity\" type=\"text\"\n                 placeholder=\"Город прибытия\" matInput>\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-fromStation\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"stDeparture\" required  name=\"stArrival\" (keyup.enter)=\"selectTrainFlight()\" \n                (blur)=\"selectTrainFlight()\" (click)=\"selectTrainFlight()\"\n                 type=\"text\" placeholder=\"Станция отправления\" matInput>\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-ToStation\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"stArrival\" name=\"stArrival\" (keyup.enter)=\"selectTrainFlight()\" \n                (blur)=\"selectTrainFlight()\" required (click)=\"selectTrainFlight()\"\n                 type=\"text\" placeholder=\"Станция прибытия\" matInput>\n\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-trainFlight\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"trainFlight\" required name=\"trainFlight\" \n                 type=\"text\" placeholder=\"Выберите рейс\" matInput>\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"get-route-btn\">\n        <button mat-flat-button (click)=\"addObjectsToMap()\" color=\"primary\">Показать путь</button>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div id=\"map\" class=\"map\"></div>\n<div class=\"dataInputsArea\">\n    <div class=\"input-fromCity\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"fromCity\" (keyup.enter)=\"selectFromCityInput()\" (blur)=\"selectFromCityInput()\" required\n                    name=\"fromCity\" type=\"text\" placeholder=\"Город отправления\" matInput>\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-toCity\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"toCity\" (keyup.enter)=\"selectToCityInput()\" (blur)=\"selectToCityInput()\" required\n                    name=\"toCity\" type=\"text\" placeholder=\"Город прибытия\" matInput>\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-fromStation\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"stDeparture\" required name=\"stArrival\" (keyup.enter)=\"selectTrainFlight()\"\n                    (blur)=\"selectTrainFlight()\" (click)=\"selectTrainFlight()\" type=\"text\"\n                    placeholder=\"Станция отправления\" matInput>\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-ToStation\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"stArrival\" name=\"stArrival\" (keyup.enter)=\"selectTrainFlight()\" (blur)=\"selectTrainFlight()\"\n                    required (click)=\"selectTrainFlight()\" type=\"text\" placeholder=\"Станция прибытия\" matInput>\n\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-trainFlight\">\n        <form class=\"example-form\">\n            <mat-form-field class=\"example-full-width\">\n                <input id=\"trainFlight\" required name=\"trainFlight\" type=\"text\" placeholder=\"Выберите рейс\" matInput>\n            </mat-form-field>\n        </form>\n    </div>\n    <div class=\"input-operator\">\n        <form class=\"example-form\">\n            <div id=\"group\" class=\"input-operator-group\">\n                <div class=\"in-op-gr-control\">\n                    <input [(ngModel)]=\"operators.beeline\" name=\"beeline\" type=\"checkbox\">\n                    <p>Beeline</p>\n                </div>\n                <div class=\"in-op-gr-control\">\n                    <input [(ngModel)]=\"operators.tele2\" name=\"tele2\" type=\"checkbox\">\n                    <p>Tele2</p>\n                </div>\n                <div class=\"in-op-gr-control\">\n                    <input [(ngModel)]=\"operators.megafon\" name=\"megafon\" type=\"checkbox\">\n                    <p>Megafon</p>\n                </div>\n                <div class=\"in-op-gr-control\">\n                    <input [(ngModel)]=\"operators.mts\" name=\"mts\" type=\"checkbox\">\n                    <p>MTS RUS</p>\n                </div>\n            </div>\n        </form>\n    </div>\n    <div class=\"get-route-btn\">\n        <button mat-flat-button (click)=\"addObjectsToMap()\" color=\"primary\">Показать путь</button>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -401,6 +401,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm2015/button.js");
 /* harmony import */ var _map_map_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./map/map.component */ "./src/app/map/map.component.ts");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm2015/checkbox.js");
+
 
 
 
@@ -434,7 +436,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_9__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_9__["ReactiveFormsModule"],
             _angular_material_input__WEBPACK_IMPORTED_MODULE_10__["MatInputModule"],
-            _angular_material_button__WEBPACK_IMPORTED_MODULE_11__["MatButtonModule"]
+            _angular_material_button__WEBPACK_IMPORTED_MODULE_11__["MatButtonModule"],
+            _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_14__["MatCheckboxModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -498,7 +501,7 @@ HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\r\n.map{\r\n    width: 100vw;\r\n    height: 100vh;\r\n}\r\n.mat-form-field {\r\n    width: inherit;\r\n}\r\nform{\r\n    width: -webkit-fill-available;\r\n}\r\n.controlsArea{\r\n    display: grid;\r\n    position: absolute;\r\n    top: 8px;\r\n    left: 8px;\r\n}\r\n.dataInputsArea{\r\n    display: grid;\r\n    grid-template-rows: repeat(6,1fr);\r\n    border-radius: 20px;\r\n    grid-row-gap: 25px;\r\n    width: 320px;\r\n    position: absolute;\r\n    justify-items: center;\r\n    top: 100px;\r\n    left: 15px;\r\n    background: #ffffffe8;\r\n}\r\n.input-fromCity{\r\n    grid-row: 1;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.input-toCity{\r\n    grid-row: 2;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.input-fromStation{\r\n    grid-row: 3;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.input-ToStation{\r\n    grid-row: 4;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.input-trainFlight{\r\n    grid-row: 5;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.get-route-btn{\r\n    grid-row: 6;\r\n    justify-self: stretch;\r\n    display: grid;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFwL21hcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtJQUNJLFlBQVk7SUFDWixhQUFhO0FBQ2pCO0FBQ0E7SUFDSSxjQUFjO0FBQ2xCO0FBQ0E7SUFDSSw2QkFBNkI7QUFDakM7QUFDQTtJQUNJLGFBQWE7SUFDYixrQkFBa0I7SUFDbEIsUUFBUTtJQUNSLFNBQVM7QUFDYjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGlDQUFpQztJQUNqQyxtQkFBbUI7SUFDbkIsa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIscUJBQXFCO0lBQ3JCLFVBQVU7SUFDVixVQUFVO0lBQ1YscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSSxXQUFXO0lBQ1gscUJBQXFCO0lBQ3JCLFlBQVk7QUFDaEI7QUFDQTtJQUNJLFdBQVc7SUFDWCxxQkFBcUI7SUFDckIsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksV0FBVztJQUNYLHFCQUFxQjtJQUNyQixZQUFZO0FBQ2hCO0FBQ0E7SUFDSSxXQUFXO0lBQ1gscUJBQXFCO0lBQ3JCLFlBQVk7QUFDaEI7QUFDQTtJQUNJLFdBQVc7SUFDWCxxQkFBcUI7SUFDckIsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksV0FBVztJQUNYLHFCQUFxQjtJQUNyQixhQUFhO0FBQ2pCIiwiZmlsZSI6InNyYy9hcHAvbWFwL21hcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5tYXB7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG59XHJcbi5tYXQtZm9ybS1maWVsZCB7XHJcbiAgICB3aWR0aDogaW5oZXJpdDtcclxufVxyXG5mb3Jte1xyXG4gICAgd2lkdGg6IC13ZWJraXQtZmlsbC1hdmFpbGFibGU7XHJcbn1cclxuLmNvbnRyb2xzQXJlYXtcclxuICAgIGRpc3BsYXk6IGdyaWQ7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDhweDtcclxuICAgIGxlZnQ6IDhweDtcclxufVxyXG4uZGF0YUlucHV0c0FyZWF7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiByZXBlYXQoNiwxZnIpO1xyXG4gICAgYm9yZGVyLXJhZGl1czogMjBweDtcclxuICAgIGdyaWQtcm93LWdhcDogMjVweDtcclxuICAgIHdpZHRoOiAzMjBweDtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIGp1c3RpZnktaXRlbXM6IGNlbnRlcjtcclxuICAgIHRvcDogMTAwcHg7XHJcbiAgICBsZWZ0OiAxNXB4O1xyXG4gICAgYmFja2dyb3VuZDogI2ZmZmZmZmU4O1xyXG59XHJcbi5pbnB1dC1mcm9tQ2l0eXtcclxuICAgIGdyaWQtcm93OiAxO1xyXG4gICAganVzdGlmeS1zZWxmOiBzdHJldGNoO1xyXG4gICAgcGFkZGluZzogNXB4O1xyXG59XHJcbi5pbnB1dC10b0NpdHl7XHJcbiAgICBncmlkLXJvdzogMjtcclxuICAgIGp1c3RpZnktc2VsZjogc3RyZXRjaDtcclxuICAgIHBhZGRpbmc6IDVweDtcclxufVxyXG4uaW5wdXQtZnJvbVN0YXRpb257XHJcbiAgICBncmlkLXJvdzogMztcclxuICAgIGp1c3RpZnktc2VsZjogc3RyZXRjaDtcclxuICAgIHBhZGRpbmc6IDVweDtcclxufVxyXG4uaW5wdXQtVG9TdGF0aW9ue1xyXG4gICAgZ3JpZC1yb3c6IDQ7XHJcbiAgICBqdXN0aWZ5LXNlbGY6IHN0cmV0Y2g7XHJcbiAgICBwYWRkaW5nOiA1cHg7XHJcbn1cclxuLmlucHV0LXRyYWluRmxpZ2h0e1xyXG4gICAgZ3JpZC1yb3c6IDU7XHJcbiAgICBqdXN0aWZ5LXNlbGY6IHN0cmV0Y2g7XHJcbiAgICBwYWRkaW5nOiA1cHg7XHJcbn1cclxuLmdldC1yb3V0ZS1idG57XHJcbiAgICBncmlkLXJvdzogNjtcclxuICAgIGp1c3RpZnktc2VsZjogc3RyZXRjaDtcclxuICAgIGRpc3BsYXk6IGdyaWQ7XHJcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\r\n.map{\r\n    height: -webkit-fill-available;\r\n    width: -webkit-fill-available;\r\n}\r\n.mat-form-field {\r\n    width: inherit;\r\n}\r\nform{\r\n    width: -webkit-fill-available;\r\n}\r\n.controlsArea{\r\n    display: grid;\r\n    position: absolute;\r\n    top: 8px;\r\n    left: 8px;\r\n}\r\n.dataInputsArea{\r\n    display: grid;\r\n    grid-template-rows: repeat(7,1fr);\r\n    border-radius: 20px;\r\n    grid-row-gap: 15px;\r\n    width: 320px;\r\n    position: absolute;\r\n    justify-items: center;\r\n    top: 6vh;\r\n    left: 15px;\r\n    background: #ffffffe8;\r\n}\r\n.input-fromCity{\r\n    grid-row: 1;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.input-toCity{\r\n    grid-row: 2;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.input-fromStation{\r\n    grid-row: 3;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.input-ToStation{\r\n    grid-row: 4;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.input-trainFlight{\r\n    grid-row: 5;\r\n    justify-self: stretch;\r\n    padding: 5px;\r\n}\r\n.get-route-btn{\r\n    grid-row: 7;\r\n    justify-self: stretch;\r\n    display: grid;\r\n}\r\n.scroll-up-btn{\r\n    display: none;\r\n}\r\n.input-operator{\r\n    grid-row:6;\r\n}\r\n.input-operator-group{\r\n    display: grid;\r\n    grid-template-columns: repeat(4,1fr);\r\n    grid-column-gap: 10px;\r\n    justify-items: center;\r\n}\r\n.in-op-gr-control{\r\n    display: grid;\r\n    justify-items: center;\r\n}\r\n@media only screen and (max-width: 450px){\r\n    .map{\r\n    \r\n    }\r\n    .scroll-up-btn{\r\n        display: initial;\r\n        grid-row:2;\r\n        position: absolute;\r\n    }\r\n    .dataInputsArea{\r\n        grid-row:1;\r\n        width: -webkit-fill-available;\r\n        position: relative;\r\n        z-index: -1;\r\n        justify-items: center;\r\n        top: 100px;\r\n        left: 0px;\r\n        background: #ffffffe8;\r\n    }\r\n    .ymaps-2-1-74-controls__control{\r\n        bottom: 120px !important;\r\n    }\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFwL21hcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtJQUNJLDhCQUE4QjtJQUM5Qiw2QkFBNkI7QUFDakM7QUFDQTtJQUNJLGNBQWM7QUFDbEI7QUFDQTtJQUNJLDZCQUE2QjtBQUNqQztBQUNBO0lBQ0ksYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixRQUFRO0lBQ1IsU0FBUztBQUNiO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsaUNBQWlDO0lBQ2pDLG1CQUFtQjtJQUNuQixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixxQkFBcUI7SUFDckIsUUFBUTtJQUNSLFVBQVU7SUFDVixxQkFBcUI7QUFDekI7QUFDQTtJQUNJLFdBQVc7SUFDWCxxQkFBcUI7SUFDckIsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksV0FBVztJQUNYLHFCQUFxQjtJQUNyQixZQUFZO0FBQ2hCO0FBQ0E7SUFDSSxXQUFXO0lBQ1gscUJBQXFCO0lBQ3JCLFlBQVk7QUFDaEI7QUFDQTtJQUNJLFdBQVc7SUFDWCxxQkFBcUI7SUFDckIsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksV0FBVztJQUNYLHFCQUFxQjtJQUNyQixZQUFZO0FBQ2hCO0FBQ0E7SUFDSSxXQUFXO0lBQ1gscUJBQXFCO0lBQ3JCLGFBQWE7QUFDakI7QUFDQTtJQUNJLGFBQWE7QUFDakI7QUFDQTtJQUNJLFVBQVU7QUFDZDtBQUNBO0lBQ0ksYUFBYTtJQUNiLG9DQUFvQztJQUNwQyxxQkFBcUI7SUFDckIscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSTs7SUFFQTtJQUNBO1FBQ0ksZ0JBQWdCO1FBQ2hCLFVBQVU7UUFDVixrQkFBa0I7SUFDdEI7SUFDQTtRQUNJLFVBQVU7UUFDViw2QkFBNkI7UUFDN0Isa0JBQWtCO1FBQ2xCLFdBQVc7UUFDWCxxQkFBcUI7UUFDckIsVUFBVTtRQUNWLFNBQVM7UUFDVCxxQkFBcUI7SUFDekI7SUFDQTtRQUNJLHdCQUF3QjtJQUM1QjtBQUNKIiwiZmlsZSI6InNyYy9hcHAvbWFwL21hcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5tYXB7XHJcbiAgICBoZWlnaHQ6IC13ZWJraXQtZmlsbC1hdmFpbGFibGU7XHJcbiAgICB3aWR0aDogLXdlYmtpdC1maWxsLWF2YWlsYWJsZTtcclxufVxyXG4ubWF0LWZvcm0tZmllbGQge1xyXG4gICAgd2lkdGg6IGluaGVyaXQ7XHJcbn1cclxuZm9ybXtcclxuICAgIHdpZHRoOiAtd2Via2l0LWZpbGwtYXZhaWxhYmxlO1xyXG59XHJcbi5jb250cm9sc0FyZWF7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgdG9wOiA4cHg7XHJcbiAgICBsZWZ0OiA4cHg7XHJcbn1cclxuLmRhdGFJbnB1dHNBcmVhe1xyXG4gICAgZGlzcGxheTogZ3JpZDtcclxuICAgIGdyaWQtdGVtcGxhdGUtcm93czogcmVwZWF0KDcsMWZyKTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7XHJcbiAgICBncmlkLXJvdy1nYXA6IDE1cHg7XHJcbiAgICB3aWR0aDogMzIwcHg7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBqdXN0aWZ5LWl0ZW1zOiBjZW50ZXI7XHJcbiAgICB0b3A6IDZ2aDtcclxuICAgIGxlZnQ6IDE1cHg7XHJcbiAgICBiYWNrZ3JvdW5kOiAjZmZmZmZmZTg7XHJcbn1cclxuLmlucHV0LWZyb21DaXR5e1xyXG4gICAgZ3JpZC1yb3c6IDE7XHJcbiAgICBqdXN0aWZ5LXNlbGY6IHN0cmV0Y2g7XHJcbiAgICBwYWRkaW5nOiA1cHg7XHJcbn1cclxuLmlucHV0LXRvQ2l0eXtcclxuICAgIGdyaWQtcm93OiAyO1xyXG4gICAganVzdGlmeS1zZWxmOiBzdHJldGNoO1xyXG4gICAgcGFkZGluZzogNXB4O1xyXG59XHJcbi5pbnB1dC1mcm9tU3RhdGlvbntcclxuICAgIGdyaWQtcm93OiAzO1xyXG4gICAganVzdGlmeS1zZWxmOiBzdHJldGNoO1xyXG4gICAgcGFkZGluZzogNXB4O1xyXG59XHJcbi5pbnB1dC1Ub1N0YXRpb257XHJcbiAgICBncmlkLXJvdzogNDtcclxuICAgIGp1c3RpZnktc2VsZjogc3RyZXRjaDtcclxuICAgIHBhZGRpbmc6IDVweDtcclxufVxyXG4uaW5wdXQtdHJhaW5GbGlnaHR7XHJcbiAgICBncmlkLXJvdzogNTtcclxuICAgIGp1c3RpZnktc2VsZjogc3RyZXRjaDtcclxuICAgIHBhZGRpbmc6IDVweDtcclxufVxyXG4uZ2V0LXJvdXRlLWJ0bntcclxuICAgIGdyaWQtcm93OiA3O1xyXG4gICAganVzdGlmeS1zZWxmOiBzdHJldGNoO1xyXG4gICAgZGlzcGxheTogZ3JpZDtcclxufVxyXG4uc2Nyb2xsLXVwLWJ0bntcclxuICAgIGRpc3BsYXk6IG5vbmU7XHJcbn1cclxuLmlucHV0LW9wZXJhdG9ye1xyXG4gICAgZ3JpZC1yb3c6NjtcclxufVxyXG4uaW5wdXQtb3BlcmF0b3ItZ3JvdXB7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoNCwxZnIpO1xyXG4gICAgZ3JpZC1jb2x1bW4tZ2FwOiAxMHB4O1xyXG4gICAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG59XHJcbi5pbi1vcC1nci1jb250cm9se1xyXG4gICAgZGlzcGxheTogZ3JpZDtcclxuICAgIGp1c3RpZnktaXRlbXM6IGNlbnRlcjtcclxufVxyXG5AbWVkaWEgb25seSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDQ1MHB4KXtcclxuICAgIC5tYXB7XHJcbiAgICBcclxuICAgIH1cclxuICAgIC5zY3JvbGwtdXAtYnRue1xyXG4gICAgICAgIGRpc3BsYXk6IGluaXRpYWw7XHJcbiAgICAgICAgZ3JpZC1yb3c6MjtcclxuICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB9XHJcbiAgICAuZGF0YUlucHV0c0FyZWF7XHJcbiAgICAgICAgZ3JpZC1yb3c6MTtcclxuICAgICAgICB3aWR0aDogLXdlYmtpdC1maWxsLWF2YWlsYWJsZTtcclxuICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICAgICAgei1pbmRleDogLTE7XHJcbiAgICAgICAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG4gICAgICAgIHRvcDogMTAwcHg7XHJcbiAgICAgICAgbGVmdDogMHB4O1xyXG4gICAgICAgIGJhY2tncm91bmQ6ICNmZmZmZmZlODtcclxuICAgIH1cclxuICAgIC55bWFwcy0yLTEtNzQtY29udHJvbHNfX2NvbnRyb2x7XHJcbiAgICAgICAgYm90dG9tOiAxMjBweCAhaW1wb3J0YW50O1xyXG4gICAgfVxyXG59Il19 */");
 
 /***/ }),
 
@@ -522,9 +525,16 @@ let MapComponent = class MapComponent {
     constructor(http) {
         this.http = http;
         this.title = 'HackMap';
+        this.operators = {
+            beeline: false,
+            megafon: false,
+            mts_rus: false,
+            tele2: false
+        };
+        this.trainFlightFrom = null;
+        this.trainFlightTo = null;
     }
     ngOnInit() {
-        this.initMap();
         this.getCustomSuggestions();
     }
     getCustomSuggestions() {
@@ -548,12 +558,12 @@ let MapComponent = class MapComponent {
     }
     selectTrainFlight() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            let trainFlightFrom = null;
-            let trainFlightTo = null;
+            this.trainFlightFrom = null;
+            this.trainFlightTo = null;
             for (const key in flightRouteData.arrayStDeparture) {
                 if (flightRouteData.arrayStDeparture.hasOwnProperty(key)) {
                     if (document.getElementById('stDeparture')['value'] === key) {
-                        trainFlightFrom = flightRouteData.arrayStDeparture[key];
+                        this.trainFlightFrom = flightRouteData.arrayStDeparture[key];
                         break;
                     }
                 }
@@ -561,22 +571,25 @@ let MapComponent = class MapComponent {
             for (const key in flightRouteData.arrayStArrival) {
                 if (flightRouteData.arrayStArrival.hasOwnProperty(key)) {
                     if (document.getElementById('stArrival')['value'] === key) {
-                        trainFlightTo = flightRouteData.arrayStArrival[key];
+                        this.trainFlightTo = flightRouteData.arrayStArrival[key];
                         break;
                     }
                 }
             }
-            if (trainFlightFrom == null || trainFlightTo == null) {
+            if (this.trainFlightFrom == null || this.trainFlightTo == null) {
                 return;
             }
-            getSuggestionsOfTrainFlight(trainFlightFrom.trim(), trainFlightTo.trim());
+            getSuggestionsOfTrainFlight(this.trainFlightFrom.trim(), this.trainFlightTo.trim());
         });
     }
-    initMap() {
-        GetMap();
-    }
     addObjectsToMap() {
-        this.http.get('../data/info.json').subscribe((data) => AddObjectsToMap(data));
+        let number = document.getElementById('trainFlight')['value'].split(' ')[0];
+        let url = `${apiURL}/routes?start_point=${this.trainFlightFrom}&end_point=${this.trainFlightTo}&number=${number}`;
+        this.http.put(url, this.operators)
+            .subscribe((data) => {
+            console.log(data);
+            GetMap(data);
+        });
     }
 };
 MapComponent.ctorParameters = () => [
