@@ -38,10 +38,11 @@ public class Utils {
     public static float accuracy;
     static String addressFragments = "";
     static List<Address> addresses = null;
-    public static final long UPDATE_INTERVAL = 5 * 1000;
-    public static final float SMALLEST_DISPLACEMENT = 1.0F;
-    public static final long FASTEST_UPDATE_INTERVAL = UPDATE_INTERVAL / 2;
-    public static final long MAX_WAIT_TIME = UPDATE_INTERVAL * 2;
+
+    public static long UPDATE_INTERVAL = 60 * 1000;
+//    public static float SMALLEST_DISPLACEMENT = 1.0F;
+    public static long FASTEST_UPDATE_INTERVAL = UPDATE_INTERVAL / 2;
+    public static long MAX_WAIT_TIME = UPDATE_INTERVAL * 2;
 
     public static MobileManager mobileManager = null;
 

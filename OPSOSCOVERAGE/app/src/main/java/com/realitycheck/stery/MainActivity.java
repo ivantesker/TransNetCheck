@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,7 +76,29 @@ public class MainActivity extends AppCompatActivity  implements
         buildLocationSettingsRequest();
 
         mActivityRecognitionClient = new ActivityRecognitionClient(this);
+
+
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == 0){
+                    Utils.UPDATE_INTERVAL = 60 * 1000;
+                    Utils.FASTEST_UPDATE_INTERVAL = Utils.UPDATE_INTERVAL / 2;
+                    Utils.MAX_WAIT_TIME = Utils.UPDATE_INTERVAL * 2;
+                }
+                else if (checkedId == 1){
+                    Utils.UPDATE_INTERVAL = 60 * 1000 * 30;
+                    Utils.FASTEST_UPDATE_INTERVAL = Utils.UPDATE_INTERVAL / 2;
+                    Utils.MAX_WAIT_TIME = Utils.UPDATE_INTERVAL * 2;
+                }
+
+            }
+        });
     }
+
+
 
 
     @Override
