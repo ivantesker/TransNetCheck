@@ -276,13 +276,37 @@ class Routes(Resource):
                             i[0],
                             i[1]
                         ],
-                        "radius": 1500
+                        "radius": 7000
                     }
                     }
                     data["features"].append(frag)
                 
         return data
 
+        # data = {"type": "FeatureCollection",
+        # "features": []}
+        # ind = 0
+        # conn = e.connect()
+
+        # query = conn.execute("select latitude, longtitude, operator, ntype from signals where operator in ('beeline')")
+        # for i in query.cursor.fetchall():
+        #     ind += 1
+        #     frag = {"type": "Feature",
+        #     "id": ind,
+        #     "options": {"fillColor": operator_colors[i[2]], "strokeColor": operator_colors[i[2]], "opacity": connection_level['4G']},
+        #     "properties": {"balloonContent": "Содержимое балуна", "hintContent": "Текст подсказки"},
+        #     "geometry": {
+        #         "type": "Circle",
+        #         "coordinates": [
+        #             i[0],
+        #             i[1]
+        #         ],
+        #         "radius": 100000
+        #     }
+        #     }
+        #     data["features"].append(frag)
+
+        # return data
 
 @app.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
